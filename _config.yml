@@ -81,10 +81,10 @@ analytics:
 # Site Author
 author:
   name             : "Daniele Bracale"
-  avatar           : "profile.png"
+  avatar           : "Daniele_Bracale.jpg"
   bio              : "Your biography for the left-hand sidebar"
   location         : "United States"
-  employer         :
+  employer         : "University of Michigan"
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : "https://scholar.google.com/citations?hl=en&user=d7Hn8asAAAAJ"
   email            : "dbracale@umich.edu"
@@ -102,7 +102,7 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "daniele-bracale-457690182"
   orcid            : "http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
