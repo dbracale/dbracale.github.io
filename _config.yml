@@ -225,6 +225,14 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
 # mimic GitHub Pages with --safe
+# Daniele (start): new commanda for math
+  - jekyll-remote-theme
+  - jekyll-scholar
+kramdown:
+  math_engine: katex
+  math_engine_opts:
+    output: mathml
+# Daniele (end): new commanda for math
 whitelist:
   - jekyll-paginate
   - jekyll-sitemap
