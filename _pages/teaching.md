@@ -8,10 +8,10 @@ author_profile: true
 Tutor at University of Michigan
 ======
 
-* **Stats 426: Introduction to theoretical statistics** (Winter 2023)
+* **Stats 426: Introduction to theoretical statistics** (Winter 2024)
 	* Grade homework, and conduct office hours
 
-* **STATS 415: Data Mining and Statistical Learning** (Winter 2022)
+* **STATS 415: Data Mining and Statistical Learning** (Winter 2023)
 	* Design and teach weekly lab classes for ~40 students, grade homework, and conduct office hours
 
 * **Stats 413: Applied Regression Analysis** (Fall 2022)
