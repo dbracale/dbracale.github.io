@@ -39,3 +39,20 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+// Add the custom style for the definition gray box here
+.definition {
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ccc;    /* Gray border */
+    padding: 15px;             /* Padding inside the box */
+    border-radius: 5px;        /* Rounded corners */
+    margin: 20px 0;            /* Space around the box */
+  }
+
+.theorem {
+    background-color: #e6f7ff; /* Light blue background */
+    border: 1px solid #99ccff; /* Blue border */
+    padding: 15px;             /* Padding inside the box */
+    border-radius: 5px;        /* Rounded corners */
+    margin: 20px 0;            /* Space around the box */
+  }
