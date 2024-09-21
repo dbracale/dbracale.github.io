@@ -5,14 +5,31 @@ permalink: /notes/ot/
 author_profile: true
 ---
 
+{% include base_path %}
+
 <script type="text/javascript">
-  var password = prompt("Please enter the password to access this page:");
-  if (password !== "Artur.1994") {
-    window.location.href = "https://dbracale.github.io"; // Redirect to another page if password is wrong
+  function checkPassword() {
+    var passwordInput = document.getElementById("password").value;
+    var correctPassword = "Artur.1994"; // Replace with your desired password
+
+    if (passwordInput === correctPassword) {
+      document.getElementById("protected-content").style.display = "block";
+      document.getElementById("password-form").style.display = "none";
+    } else {
+      alert("Incorrect password! Please try again.");
+    }
   }
 </script>
 
-{% include base_path %}
+<div id="password-form">
+  <h2>This page is password protected</h2>
+  <label for="password">Enter password:</label>
+  <input type="password" id="password" name="password">
+  <button onclick="checkPassword()">Submit</button>
+</div>
+
+<div id="protected-content" style="display: none;">
+<!-- Your protected content goes here -->
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -101,3 +118,5 @@ Theorem <a href="#theorem1">1</a> appears in the proof of Proposition 1 in <a hr
 ## <a id="references"></a> References
 
 1. <a id="ref1"></a> Paty, François-Pierre, Alexandre d’Aspremont, and Marco Cuturi. "Regularity as regularization: Smooth and strongly convex brenier potentials in optimal transport." In *International Conference on Artificial Intelligence and Statistics*, pp. 1222-1232. PMLR, 2020.
+
+</div>
