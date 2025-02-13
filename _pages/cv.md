@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: ""
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -9,4 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-[Curriculim Vitae Daniele Bracale](https://github.com/dbracale/files/tree/main)
+<!-- Embed PDF -->
+<div class="pdf-container">
+  <iframe src="{{ site.baseurl }}/assets/cv/Daniele_Bracale_CV.pdf"></iframe>
+</div>
