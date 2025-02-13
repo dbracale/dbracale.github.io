@@ -4,6 +4,35 @@
 
 {% include seo.html %}
 
+<!-- ADDED BY ME -->
+<!-- Structured Data for Google SEO -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daniele Bracale",
+    "url": "https://dbracale.github.io",
+    "sameAs": [
+      "https://www.linkedin.com/in/daniele-bracale-457690182",
+      "https://scholar.google.com/citations?user=d7Hn8asAAAAJ",
+      "https://github.com/dbracale"
+    ],
+    "jobTitle": "PhD Student",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "University of Michigan"
+    }
+  }
+  </script>
+  
+  <!-- Improve Search Engine Visibility -->
+  <meta name="description" content="Daniele Bracale - PhD Student in Statistics at the University of Michigan. Research in machine learning, probability theory, and shape constraints.">
+  <meta name="keywords" content="Daniele Bracale, Statistics, Machine Learning, University of Michigan, Research">
+  <meta name="author" content="Daniele Bracale">
+  <meta name="robots" content="index, follow">
+
+<!-- ADDED BY ME END -->
+
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -17,5 +46,9 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css">
+
+
 
 <meta http-equiv="cleartype" content="on">
+

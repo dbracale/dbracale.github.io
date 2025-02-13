@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Daniele Bracale"
 title_separator          : "-"
 name                     : &name "Daniele Bracale"
-description              : &description "personal description"
+description              : &description "Personal website of Daniele Bracale, PhD student in Statistics at the University of Michigan."
 url                      : "https://dbracale.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "dbracale/dbracale.github.io"
@@ -86,7 +86,7 @@ author:
   location         : "Ann Arbor, MI"
   employer         :
   pubmed           : 
-  googlescholar    : 
+  googlescholar    : "d7Hn8asAAAAJ"
   email            : "dbracale@umich.edu"
   researchgate     :  
   uri              :
@@ -94,7 +94,7 @@ author:
   codepen          :
   dribbble         :
   flickr           :
-  facebook         :
+  facebook         : 
   foursquare       :
   github           : "dbracale"
   google_plus      :
