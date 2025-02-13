@@ -9,9 +9,9 @@ redirect_from:
   - /about.html
 ---
 
-I am a third year PhD student in Statistics at the University of Michigan, Ann Arbor. My research interests broadly lie in the areas of theoretical machine learning, probability theory and frequentist statistics. I graduated from University of Turin (2016) with a BS in Mathematics, and an MS in Stochastics and Data Science (2021). Before enrolling in the PhD program, I had the opportunity to work as a tutor and research assistant at the University of Turin. 
+I am a fourth-year PhD student in Statistics at the University of Michigan, Ann Arbor. My research interests broadly lie in machine learning, probability theory, and statistics, with a particular focus on the connection between shape constraints and dynamic pricing. I graduated from the University of Turin with a BSc in Mathematics and an MSc in Stochastics and Data Science.
 
-I have a deep passion for teaching, and my approach is centered on the commitment to simplify complex concepts, making them accessible to everyone. My goal is to empower students to derive results with logical thinking, rather than relying on memorization. Besides teaching, I enjoy travelling, learning languages, boxing and biking.
+I have a deep passion for teaching, and my approach is centered on simplifying complex concepts to make them accessible to everyone. My goal is to empower students to derive results through logical reasoning rather than relying on memorization. Beyond teaching, I love music, enjoy traveling, boxing, and biking.
 
 <!-- This is a comment in Markdown
 **Research**
