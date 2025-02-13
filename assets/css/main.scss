@@ -61,6 +61,28 @@
     font-family: 'Noto Serif', serif;
 }
 
+body {
+  background-color: #242424; /* Dark mode */
+  color: #e0e0e0; /* Light text for contrast */
+}
+
+/* Change the navigation bar background */
+.masthead, .site-nav {
+    background-color: #242424 !important; /* Dark background */
+    border-bottom: 1px solid #333333; /* Optional: subtle border */
+}
+
+/* Change navigation text color */
+.masthead a, .site-nav a {
+    color: #e0e0e0 !important; /* Light text */
+}
+
+/* Change the active page and hover effect */
+.site-nav a:hover, .site-nav .current {
+    background-color: #333333 !important; /* Slightly lighter for contrast */
+    color: #ffffff !important;
+}
+
 
 
 

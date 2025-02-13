@@ -430,3 +430,13 @@
     }
   }
 }
+
+.site-nav a {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.site-nav a:hover {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  padding: 5px 10px !important; /* Soft hover effect */
+}

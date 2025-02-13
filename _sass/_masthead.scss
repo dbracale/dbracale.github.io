@@ -31,23 +31,13 @@
   }
 }
 
-.masthead__menu {
-
-  ul {
-    margin: 0;
-    padding: 0;
-    clear: both;
-    list-style-type: none;
-  }
+.masthead__menu-item a {
+  color: #e0e0e0 !important; /* Light text */
+  transition: all 0.3s ease-in-out !important;
 }
 
-.masthead__menu-item {
-  display: block;
-  list-style-type: none;
-  white-space: nowrap;
-
-  &--lg {
-    padding-right: 2em;
-    font-weight: 700;
-  }
+.masthead__menu-item a:hover {
+  background-color: #3a3a3a !important; /* Soft hover effect */
+  color: #ffffff !important;
+  padding: 5px 10px !important;
 }
