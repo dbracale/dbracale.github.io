@@ -5,7 +5,7 @@ permalink: /projects/
 author_profile: true
 ---
 
-## Pubblications 
+## Publications 
 
 * [Large-width functional asymptotics for deep Gaussian neural networks](https://arxiv.org/abs/2102.10307)
 
@@ -15,6 +15,6 @@ author_profile: true
 
 * [Microfoundation Inference for Strategic Prediction](https://arxiv.org/abs/2411.08998)
 
-## Under submissison
+## Preprints
 
 * [Dynamic Pricing in the Linear Valuation Model using Shape Constraints](https://arxiv.org/abs/2502.05776)
