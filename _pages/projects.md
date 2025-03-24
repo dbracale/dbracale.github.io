@@ -18,3 +18,5 @@ author_profile: true
 ## Preprints
 
 * [Dynamic Pricing in the Linear Valuation Model using Shape Constraints](https://arxiv.org/abs/2502.05776)
+
+* [Optimal Nonlinear Online Learning under Sequential Price Competition via s-Concavity](https://arxiv.org/abs/2503.16737)
