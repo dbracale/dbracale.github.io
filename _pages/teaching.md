@@ -5,7 +5,7 @@ permalink: /teaching/
 author_profile: true
 ---
 
-Tutor at University of Michigan
+Graduate Student Instructor (GSI) at University of Michigan
 ======
 
 * **Stats 426: Introduction to theoretical statistics** (Winter 2024)
@@ -27,11 +27,15 @@ Tutor at University of Michigan
 * **Stats 426: Introduction to theoretical statistics** (Fall 2021)
 	* Design and teach weekly lab classes for ~70 students, grade homework, and conduct office hours
 
+---
+
 Tutor at University of Turin: graduate course
 ======
 
 * **Statistics for stochastic processes** (Winter 2021, at department of Mathematics in Stochastic and Data Science)
 	* Taught weekly lab classes for ~20 students, assisted the instructor in developing the curriculum, provided individualized feedback on projects, built and graded homework, and conducted office hours.
+
+---
 
 Tutor at University of Turin: undergraduate courses
 ======

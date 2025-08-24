@@ -11,3 +11,6 @@ main:
 
   #- title: "Notes"
   #  url: "/notes/"
+
+  - title: "Current class: Stats 551"
+    url: "/stats551/"
