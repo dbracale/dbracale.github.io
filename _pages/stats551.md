@@ -20,6 +20,18 @@ Students should sign up on Piazza [[link]](https://piazza.com/umich/fall2025/sta
 
 # <a id="calendar"></a> GSI's Office Hours
 
-- **Location:** TBD
+Monday: 
+- **Time:** 5:30 - 6:30 PM 
+- **Location:** G219 Angell Hall
 
-<iframe src="https://calendar.google.com/calendar/embed?src=c_58b5a07d2d5ebbb6fff5dd2e5ced6e85fe16f9e78db4ebfaefcf7fcfa4a98707%40group.calendar.google.com&ctz=Europe%2FRome" style="border-width:0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
+Wednesday:
+- **Time:** 5:30 - 6:30 PM 
+- **Location:** Zoom - link [here](https://umich.zoom.us/j/91207661731?jst=2)
+
+Friday:
+- **Time:** 8:30 - 9:30 AM
+- **Location:** Zoom - link [here](https://umich.zoom.us/j/91207661731?jst=2)
+
+A full calendar of the course can be found below.
+
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&showTitle=1&showNav=1&showTabs=1&mode=AGENDA&src=Y2M2MjI2aHRxODhhNzNpZnE3dWtnam84MGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%234285F4" style="border-width:0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
