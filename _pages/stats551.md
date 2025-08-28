@@ -22,11 +22,11 @@ Students should sign up on Piazza [[link]](https://piazza.com/umich/fall2025/sta
 
 Monday: 
 - **Time:** 5:30 - 6:30 PM 
-- **Location:** G219 Angell Hall
+- **Location:** Zoom - link [here](https://umich.zoom.us/j/91207661731?jst=2)
 
 Wednesday:
 - **Time:** 5:30 - 6:30 PM 
-- **Location:** Zoom - link [here](https://umich.zoom.us/j/91207661731?jst=2)
+- **Location:** G219 Angell Hall
 
 Friday:
 - **Time:** 8:30 - 9:30 AM
