@@ -35,3 +35,13 @@ Friday:
 A full calendar of the course can be found below.
 
 <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&showTitle=1&showNav=1&showTabs=1&mode=AGENDA&src=Y2M2MjI2aHRxODhhNzNpZnE3dWtnam84MGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%234285F4" style="border-width:0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
+
+---
+
+
+# Activities
+- [Activity 1]({{ '/stats551/activities/activity-1/' | relative_url }})
+- [Activity 2]({{ '/stats551/activities/activity-2/' | relative_url }})
+
+
+---
