@@ -77,7 +77,7 @@ Formally,
 
 ---
 
-## Goal: maximize clicks via low regret
+## Goal: maximize clicks
 
 We want a policy (sequence \\(x_1,\dots,x_T\\)) that maximizes the expected number of clicks. It is standard to evaluate policies via *regret*. Let
 \\[
