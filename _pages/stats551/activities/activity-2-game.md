@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Activity 2 — Interactive Game"
+title: "Activity 2 — Interactive Beta–Bernoulli Bandit for Banner Ads Game"
 permalink: /stats551/activities/activity-2/game/
 author_profile: false
 toc: false

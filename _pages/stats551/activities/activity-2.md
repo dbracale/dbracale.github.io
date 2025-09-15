@@ -20,6 +20,8 @@ last_modified_at: 2025-09-15
 </style>
 
 
+
+
 {% include base_path %}
 
 <!-- Back button -->
@@ -56,9 +58,9 @@ last_modified_at: 2025-09-15
 
 ---
 
-We model a website that, for each arriving user, shows one of \\(K\\) banner ads.  
-If ad \\(k\in\{1,\dots,K\}\\) is displayed, the outcome is a *click* (\\(r=1\\)) with probability \\(\theta_k\in[0,1]\\) and *no click* (\\(r=0\\)) with probability \\(1-\theta_k\\).  
-The vector \\(\theta=(\theta_1,\dots,\theta_K)\\) is unknown and fixed. The quantity \\(\theta_k\\) is the *click-through rate (CTR)* of ad \\(k\\).
+- We model a website that, for each arriving user, shows one of \\(K\\) banner ads.  
+- If ad \\(k\in\{1,\dots,K\}\\) is displayed, the outcome is a *click* (\\(r=1\\)) with probability \\(\theta_k\in[0,1]\\) and *no click* (\\(r=0\\)) with probability \\(1-\theta_k\\).  
+- The vector \\(\theta=(\theta_1,\dots,\theta_K)\\) is unknown and fixed. The quantity \\(\theta_k\\) is the *click-through rate (CTR)* of ad \\(k\\).
 
 ### Interaction protocol
 Over rounds \\(t=1,2,\ldots,T\\):
@@ -175,16 +177,6 @@ Each time you show ad \\(k\\), observe \\(r_t\\), apply the update in \\eqref{eq
 
 ---
 
-### Tiny numeric example (one ad for intuition)
-Start with uniform prior \\((\\alpha,\\beta)=(1,1)\\).
-- First user clicks: \\(r_1=1 \\Rightarrow (\\alpha,\\beta)\leftarrow(2,1)\\), mean \\(=2/3\\).
-- Next user does **not** click: \\(r_2=0 \\Rightarrow (\\alpha,\\beta)\\leftarrow(2,2)\\), mean \\(=1/2\\).
-
-You can see how each outcome nudges the belief while the variance decreases as counts grow.
-
-
----
-
 ## Baseline: Greedy (posterior-mean) policy
 
 At each round \\(t\\):
@@ -206,25 +198,28 @@ At each round \\(t\\):
 2. Play \\(x_t\in\arg\max_k \tilde{\theta}_k\\).
 3. Observe \\(r_t\\) and update \eqref{eq:beta-update}.
 
-Crucially, TS samples *success probabilities* from the posterior (not binary outcomes). This randomized choice naturally balances exploration (trying uncertain ads) and exploitation (favoring ads likely to have high CTR). 
+This randomized choice naturally balances exploration (trying uncertain ads) and exploitation (favoring ads likely to have high CTR). 
 
-**Remark (regret behavior).** In the Bernoulli bandit, TS achieves logarithmic expected regret (order-optimal): \\(\mathbb{E}[R_T]=O\!\left(\sum_{k\neq k^\star}\frac{\log T}{\Delta_k}\right)\\) under standard conditions (not proved here).
+**Remark (regret behavior).** In the Bernoulli bandit, the Greedy policy has linear regret \\(\mathbb{E}[R_T]=O(T)\\), while TS achieves logarithmic expected regret (order-optimal): \\(\mathbb{E}[R_T]=O\left(\sum_{k\neq k^\star}\frac{\log T}{\Delta_k}\right)\\) under standard conditions.
 
 ---
 
-## Game description & rules
+# LET'S SIMULATE AND PLAY THIS GAME!
 
-You control a 3-arm bandit with hidden click-through rates \\(\\theta_1,\\theta_2,\\theta_3\\).  
-Each round, up to \\(T=30\\), choose one ad. You’ll see the **instantaneous reward** (😀 for 1, 😞 for 0).  
-Each arm’s posterior is \\(\\mathrm{Beta}(\\alpha_k,\\beta_k)\\) and updates as
-\[
+---
+
+**Game description & rules**
+
+- You control a 3-arm bandit with hidden click-through rates \\(\\theta_1,\\theta_2,\\theta_3\\).  
+- Each round, up to \\(T=30\\), choose one ad. You’ll see the **instantaneous reward** (😀 for 1, 😞 for 0).  
+- Each arm’s posterior is \\(\\mathrm{Beta}(\\alpha_k,\\beta_k)\\) and updates as
+\\[
 (\\alpha_k,\\beta_k)\\leftarrow(\\alpha_k+r_t,\\;\\beta_k+(1-r_t)).
-\]
+\\]
 
-**Controls**
+**Controls buttoms**
 - **Play Ad 1/2/3**: pulls that arm and updates its posterior.  
-- **Sample (TS)**: draws \\(\\tilde\\theta_k\\sim\\mathrm{Beta}(\\alpha_k,\\beta_k)\\) for each arm and shows **colored dots on the x-axis** (same color as the curve).  
-  Dots **disappear** as soon as you make your next play.  
+- **Sample (TS)**: you have the possibility to play a Thompson Sampling strategy. If you want to play this strategy, push this buttom to draws \\(\\tilde\\theta_k\\sim\\mathrm{Beta}(\\alpha_k,\\beta_k)\\) for each arm and make your decision.
 - **New Game**: resets with fresh random CTRs \\(\\theta_k\\sim\\mathrm{Beta}(2,2)\\) and uniform priors \\((1,1)\\).  
 - After round 30, the true CTRs \\(\\theta_k\\) are revealed.
 
