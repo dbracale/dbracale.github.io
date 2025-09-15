@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Activity 2: Beta–Bernoulli Bandit for Banner Ads"
+title: "Activity 2 — Interactive Beta–Bernoulli Bandit (Game)"
 permalink: /stats551/activities/activity-2/
 author_profile: false
 toc: true
@@ -10,6 +10,7 @@ classes: wide
 mathjax: true
 last_modified_at: 2025-09-15
 ---
+
 <style>
 /* Remove the big background box */
 .page, .page__content {
