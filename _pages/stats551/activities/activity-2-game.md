@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Activity 2 — Interactive Beta–Bernoulli Bandit for Banner Ads Game"
+title: "Activity 2 — Interactive Beta–Bernoulli Bandit (Game)"
 permalink: /stats551/activities/activity-2/game/
 author_profile: false
 toc: false
@@ -244,3 +244,9 @@ last_modified_at: 2025-09-15
 </script>
 {% endraw %}
 
+<!-- Librerie locali (defer mantiene l'ordine e carica prima di DOMContentLoaded) -->
+<script src="{{ '/assets/js/jstat-1.9.6.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/plotly-2.35.2.min.js' | relative_url }}" defer></script>
+
+<!-- Logica del gioco separata -->
+<script src="{{ '/assets/js/bandit-game.js' | relative_url }}" defer></script>
