@@ -36,15 +36,15 @@ last_modified_at: 2025-09-15
 <div class="bandit-card" id="bandit-game">
 
   <div class="bandit-controls">
-    <button class="btn-arm btn-arm-1" type="button" onclick="playAd(0)">Play Ad 1</button>
-    <button class="btn-arm btn-arm-2" type="button" onclick="playAd(1)">Play Ad 2</button>
-    <button class="btn-arm btn-arm-3" type="button" onclick="playAd(2)">Play Ad 3</button>
-    <button class="btn-secondary" type="button" onclick="thompson()">Sample (TS)</button>
-    <button class="btn-secondary" type="button" onclick="newGame()">New Game</button>
+    <button class="btn-arm btn-arm-1" type="button" data-arm="0">Play Arm 1</button>
+    <button class="btn-arm btn-arm-2" type="button" data-arm="1">Play Arm 2</button>
+    <button class="btn-arm btn-arm-3" type="button" data-arm="2">Play Arm 3</button>
+    <button class="btn-secondary" type="button" id="btn-ts">Sample (TS)</button>
+    <button class="btn-secondary" type="button" id="btn-new">New Game</button>
   </div>
 
   <div class="bandit-status" id="status">
-    Round 0/30 • Total reward: 0 • Choose an ad to start!
+    Round 0/30 • Total reward: 0 • Choose an arm to start!
   </div>
 
   <div id="plots" class="bandit-plot"></div>
@@ -58,7 +58,6 @@ last_modified_at: 2025-09-15
   background:#fff; border:1px solid #e6e6e6; border-radius:14px; padding:18px 18px 8px;
   box-shadow:0 6px 18px rgba(0,0,0,.06); max-width:820px; margin:18px 0;
 }
-.bandit-title{ margin:0 0 8px; font-weight:700; letter-spacing:.2px; }
 .bandit-controls{ display:flex; flex-wrap:wrap; gap:.6rem; margin:12px 0 10px; }
 .btn-arm, .btn-secondary{
   border-radius:999px; padding:.55rem 1rem; font-weight:600; cursor:pointer;
@@ -70,9 +69,6 @@ last_modified_at: 2025-09-15
 .btn-arm-1{ border-color:#1f77b4; color:#0f3d63; background:linear-gradient(0deg,#eef6fd,#f7fbff); }
 .btn-arm-2{ border-color:#ff7f0e; color:#7a3d00; background:linear-gradient(0deg,#fff2e6,#fff8f0); }
 .btn-arm-3{ border-color:#2ca02c; color:#0d4f0d; background:linear-gradient(0deg,#eefdef,#f6fff6); }
-.btn-arm-1:hover{ background:#e8f2fc; }
-.btn-arm-2:hover{ background:#ffecd9; }
-.btn-arm-3:hover{ background:#e9fbe9; }
 .btn-secondary{ border-color:#d9d9d9; background:#f2f2f2; color:#333; }
 .btn-secondary:hover{ background:#ececec; border-color:#d0d0d0; }
 .bandit-status{
@@ -92,7 +88,7 @@ last_modified_at: 2025-09-15
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
-<!-- ======= Logic ======= -->
+<!-- ======= Logic (no 'ad' in names, no inline onclick) ======= -->
 <script>
 (function(){
   const K = 3;
@@ -121,16 +117,19 @@ last_modified_at: 2025-09-15
     t = 0;
     totalReward = 0;
     sampleDots = [];
-    setStatus(`Round ${t}/${MAX_T} • Total reward: ${totalReward} • Choose an ad to start!`);
+    setStatus(`Round ${t}/${MAX_T} • Total reward: ${totalReward} • Choose an arm to start!`);
     const rev = document.getElementById('reveal');
     rev.hidden = true;
     rev.textContent = '';
     updatePlot();
   }
 
-  function setStatus(msg){ document.getElementById('status').textContent = msg; }
+  function setStatus(msg){ 
+    const el = document.getElementById('status');
+    if (el) el.textContent = msg; 
+  }
 
-  function playAd(k){
+  function pullArm(k){
     if(t >= MAX_T){ return; }
     const r = (Math.random() < thetas[k]) ? 1 : 0;
     alpha[k] += r;
@@ -139,16 +138,16 @@ last_modified_at: 2025-09-15
     t += 1;
     const face = r ? '😀' : '😞';
     sampleDots = []; // clear TS dots after play
-    setStatus(`Round ${t}/${MAX_T} • Played Ad ${k+1} • Instantaneous reward: ${r} ${face} • Total reward: ${totalReward}`);
+    setStatus(`Round ${t}/${MAX_T} • Played Arm ${k+1} • Instantaneous reward: ${r} ${face} • Total reward: ${totalReward}`);
     updatePlot();
     if(t === MAX_T){ revealThetas(); }
   }
 
-  function thompson(){
+  function sampleTS(){
     if(t >= MAX_T){ return; }
     const samples = alpha.map((a,i)=> jStat.beta.sample(a, beta[i]));
     for(let k=0;k<K;k++){ sampleDots.push({k, x: samples[k]}); }
-    const msg = `TS samples: ${samples.map((x,i)=>`θ${toSub(i+1)}≈${x.toFixed(2)}`).join(', ')} • would choose Ad ${samples.indexOf(Math.max(...samples))+1}`;
+    const msg = `TS samples: ${samples.map((x,i)=>`θ${toSub(i+1)}≈${x.toFixed(2)}`).join(', ')} • would choose Arm ${samples.indexOf(Math.max(...samples))+1}`;
     setStatus(`Round ${t}/${MAX_T} • ${msg} • Total reward: ${totalReward}`);
     updatePlot();
   }
@@ -161,15 +160,18 @@ last_modified_at: 2025-09-15
   }
 
   function updatePlot(){
+    const target = document.getElementById('plots');
+    if(!target){ return; }
+
     const traces = [];
     let yMax = 0;
 
     // density curves
     for(let k=0;k<K;k++){
-        const xs = [], ys = [];
-        const a = alpha[k], b = beta[k];
-        const steps = 400;
-        for(let i=0;i<=steps;i++){
+      const xs = [], ys = [];
+      const a = alpha[k], b = beta[k];
+      const steps = 400;
+      for(let i=0;i<=steps;i++){
         const x = i/steps;
         xs.push(x);
         let y = 0;
@@ -177,53 +179,68 @@ last_modified_at: 2025-09-15
         if (!isFinite(y)) y = 0;
         ys.push(y);
         if(y > yMax) yMax = y;
-        }
-        traces.push({
-        x: xs, y: ys, mode: 'lines', name: `Ad ${k+1} (α=${a}, β=${b})`,
+      }
+      traces.push({
+        x: xs, y: ys, mode: 'lines', name: `Arm ${k+1} (α=${a}, β=${b})`,
         line: { width: lineWidth, color: colors[k] }, hoverinfo:'name+x+y'
-        });
+      });
     }
 
-    // TS sample dots ~on the x-axis
-    for (const {k,x} of sampleDots){
-        traces.push({
-        x: [x], y: [1e-6], mode: 'markers', name: null, showlegend: false,
+    // TS sample dots (stesso colore della densità corrispondente)
+    for (const {k, x} of sampleDots){
+      traces.push({
+        x: [x],
+        y: [1e-6],
+        mode: 'markers',
+        name: null,
+        showlegend: false,
         marker: { color: colors[k], size: markerSize, symbol: 'circle' },
         hoverinfo: 'x',
         hovertemplate: `TS sample θ${toSub(k+1)}=%{x:.3f}<extra></extra>`,
-        cliponaxis: false   // extra safety: don't clip markers at the axis
-        });
+        cliponaxis: false
+      });
     }
 
-    // give space below 0 so dots aren't cut off
-    const yPadBelow = Math.max(0.12 * yMax, 0.15); // at least 0.15 below zero
+
+    const yPadBelow = Math.max(0.12 * yMax, 0.15);
     const yMin = -yPadBelow;
     const yTop = yMax * 1.2 + 1e-6;
 
     const layout = {
-        title: { text: 'Posterior distributions (updated each round)', font: { size: 20 } },
-        xaxis: { title: 'θ', range: [0,1], titlefont:{size:16}, tickfont:{size:14} },
-        yaxis: {
-        title: 'Density',
-        range: [yMin, yTop],
-        titlefont:{size:16}, tickfont:{size:14},
-        zeroline: false   // keep axis line off so it doesn't cover the dots
-        // (set to true with zerolinecolor:'#ddd', zerolinewidth:1 if you want a faint line)
-        },
-        legend: { font:{ size:14 } },
-        margin: { l: 60, r: 20, t: 48, b: 50 },
-        hovermode: 'closest',
-        height: 420
+      title: { text: 'Posterior distributions (updated each round)', font: { size: 20 } },
+      xaxis: { title: 'θ', range: [0,1], titlefont:{size:16}, tickfont:{size:14} },
+      yaxis: { title: 'Density', range: [yMin, yTop], titlefont:{size:16}, tickfont:{size:14}, zeroline: false },
+      legend: { font:{ size:14 } },
+      margin: { l: 60, r: 20, t: 48, b: 50 },
+      hovermode: 'closest',
+      height: 420
     };
 
-    Plotly.newPlot('plots', traces, layout, {displayModeBar:false, responsive:true});
+    try {
+      Plotly.newPlot(target, traces, layout, {displayModeBar:false, responsive:true});
+    } catch(e) {
+      setStatus('Plot error. Check that Plotly is loaded.');
+      console.error(e);
     }
+  }
 
+  // Attach listeners (no inline onclick)
+  function wireUI(){
+    document.querySelectorAll('.btn-arm').forEach(btn => {
+      btn.addEventListener('click', () => pullArm(Number(btn.dataset.arm)));
+    });
+    const ts = document.getElementById('btn-ts');
+    const nw = document.getElementById('btn-new');
+    if (ts) ts.addEventListener('click', sampleTS);
+    if (nw) nw.addEventListener('click', resetState);
+  }
 
-  window.playAd = playAd;
-  window.thompson = thompson;
-  window.newGame = resetState;
-  resetState();
+  // Initialize after DOM is ready (page includes the HTML above before this script)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { wireUI(); resetState(); });
+  } else {
+    wireUI(); resetState();
+  }
 })();
 </script>
 {% endraw %}
