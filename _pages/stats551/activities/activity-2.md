@@ -65,7 +65,7 @@ last_modified_at: 2025-09-15
 
 ### Interaction protocol
 Over rounds \\(t=1,2,\ldots,T\\):
-- choose an ad \\(x_t\in\{1,\dots,K\}\\) to show;
+- choose an ad \\(x_t\in\\{1,\dots,K\\}\\) to show;
 - observe a binary reward \\(r_t\in\\{0,1\\}\\) indicating whether the user clicked.
 
 Formally,
