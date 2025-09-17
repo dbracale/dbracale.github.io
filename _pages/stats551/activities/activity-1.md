@@ -73,7 +73,7 @@ Please read the short *Statistical Science* paper linked below, which details th
 3. **Where else might this analysis be useful?** Think of applications beyond aviation (e.g., search-and-rescue, cybersecurity, clinical monitoring).
 
 <p>
-  <a class="btn btn--info" href="https://projecteuclid.org/journals/statistical-science/volume-27/issue-2/Bayesian-Search-for-Air-France-Flight-447/10.1214/12-STS370.full" target="_blank" rel="noopener">
+  <a class="btn btn--info" href="https://arxiv.org/abs/1405.4720" target="_blank" rel="noopener">
     Read the paper: <strong>Statistical Science — Bayesian Search for Air France 447</strong>
   </a>
 </p>
