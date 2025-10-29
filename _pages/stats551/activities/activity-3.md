@@ -157,6 +157,7 @@ You can submit **one day per entry**. You may update your entry for a day **unti
 <script>
 (() => {
   console.log("✅ JavaScript loaded!");
+  if (location.search) history.replaceState(null, "", location.pathname);
 
   const form = document.getElementById('activity3-form');
   const messages = document.getElementById('a3-messages');
