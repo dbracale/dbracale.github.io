@@ -155,6 +155,8 @@ You can submit **one day per entry**. You may update your entry for a day **unti
 
 <script>
 (() => {
+  console.log("✅ JavaScript loaded!");
+
   const form = document.getElementById('activity3-form');
   const messages = document.getElementById('a3-messages');
   const submitBtn = document.getElementById('submit-btn');
