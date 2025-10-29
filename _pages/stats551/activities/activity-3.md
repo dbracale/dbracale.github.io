@@ -164,7 +164,7 @@ You can submit **one day per entry**. You may update your entry for a day **unti
   const resetBtn = document.getElementById('reset-btn');
 
   // ✅ Use the Web App URL from "Manage deployments" (must end with /exec)
-  const ENDPOINT = 'https://script.google.com/a/macros/umich.edu/s/AKfycbwmeB7spjAnHD7_E-hmmrWJDu394W8Y4n_ofc3kAM8ol7uCts72tNbUrzFdWnUeBpK1/exec';
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwmeB7spjAnHD7_E-hmmrWJDu394W8Y4n_ofc3kAM8ol7uCts72tNbUrzFdWnUeBpK1/exec';
   
 
   function showMsg(text, type = 'success'){
