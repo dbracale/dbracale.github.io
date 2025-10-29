@@ -157,16 +157,14 @@ You can submit **one day per entry**. You may update your entry for a day **unti
 <script>
 (() => {
   console.log("✅ JavaScript loaded!");
-  if (location.search) history.replaceState(null, "", location.pathname);
 
   const form = document.getElementById('activity3-form');
   const messages = document.getElementById('a3-messages');
   const submitBtn = document.getElementById('submit-btn');
   const resetBtn = document.getElementById('reset-btn');
 
-  // ✅ Use the Web App URL from "Manage deployments" (must end with /exec)
+  // Use the /exec URL (NOT /dev, NOT /a/macros)
   const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwmeB7spjAnHD7_E-hmmrWJDu394W8Y4n_ofc3kAM8ol7uCts72tNbUrzFdWnUeBpK1/exec';
-  
 
   function showMsg(text, type = 'success'){
     messages.innerHTML = `<div class="alert ${type === 'success' ? 'success' : 'error'}">${text}</div>`;
@@ -190,27 +188,30 @@ You can submit **one day per entry**. You may update your entry for a day **unti
     if(!(cil <= mean && mean <= ciu)) return showMsg('Require: Lower ≤ Mean ≤ Upper.', 'error');
     if(![mean, cil, ciu].every(plausibleFahrenheit)) return showMsg('Values look implausible (−60 to 120 °F allowed).', 'error');
 
-    const payload = {
-      umid,                                    // ✅ correct key
-      day: Number(day),
-      mean: Number(twoDecimals(mean)),
-      cil: Number(twoDecimals(cil)),
-      ciu: Number(twoDecimals(ciu)),
+    // ✅ IMPORTANT: send as form-encoded to avoid CORS preflight
+    const payload = new URLSearchParams({
+      umid,
+      day: String(Number(day)),
+      mean: twoDecimals(mean),
+      cil: twoDecimals(cil),
+      ciu: twoDecimals(ciu),
       userAgent: navigator.userAgent,
       tsClient: new Date().toISOString()
-    };
+    });
 
     submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
     try{
       const res = await fetch(ENDPOINT, {
         method: 'POST',
-        mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        // DO NOT set headers; browser will use application/x-www-form-urlencoded
+        body: payload
       });
-      const data = await res.json().catch(() => ({ ok:false, message:'Invalid server response' }));
+
+      // Read JSON directly (no CORS preflight => response is readable)
+      const data = await res.json();
       if(!data.ok) throw new Error(data.message || 'Submission failed');
-      showMsg(`Saved ✔ — UMID ${payload.umid}, Dec ${payload.day}: mean ${payload.mean.toFixed(2)}°F, CI [${payload.cil.toFixed(2)}, ${payload.ciu.toFixed(2)}].`);
+
+      showMsg(`Saved ✔ — UMID ${umid}, Dec ${day}: mean ${Number(mean).toFixed(2)}°F, CI [${Number(cil).toFixed(2)}, ${Number(ciu).toFixed(2)}].`);
       form.reset();
     }catch(err){
       console.error(err);
@@ -223,6 +224,7 @@ You can submit **one day per entry**. You may update your entry for a day **unti
   resetBtn.addEventListener('click', () => { form.reset(); messages.innerHTML=''; });
 })();
 </script>
+
 {% endraw %}
 
 ---
