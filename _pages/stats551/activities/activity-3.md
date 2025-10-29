@@ -153,6 +153,7 @@ You can submit **one day per entry**. You may update your entry for a day **unti
   <div class="help">Logged-in @umich.edu only. You may re-submit a day; the latest submission before the deadline is used.</div>
 </form>
 
+{% raw %}
 <script>
 (() => {
   console.log("✅ JavaScript loaded!");
@@ -221,7 +222,7 @@ You can submit **one day per entry**. You may update your entry for a day **unti
   resetBtn.addEventListener('click', () => { form.reset(); messages.innerHTML=''; });
 })();
 </script>
-
+{% endraw %}
 
 ---
 
