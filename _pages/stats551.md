@@ -42,6 +42,6 @@ A full calendar of the course can be found below.
 # Activities
 - [Activity 1]({{ '/stats551/activities/activity-1/' | relative_url }})
 - [Activity 2]({{ '/stats551/activities/activity-2/' | relative_url }})
-
+- [Activity 3]({{ '/stats551/activities/activity-3/' | relative_url }})
 
 ---

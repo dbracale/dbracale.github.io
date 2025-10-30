@@ -49,8 +49,6 @@ form.activity3 .help{font-size:.9rem;color:#555;margin-top:.25rem}
 
 ---
 
-# Activity 3 — **Predict NYC average temperature** (Dec 3–7, 2025)
-
 ## What you will do
 
 Each student will predict the **daily average temperature (°F)** in **New York City** for the following 5 dates:
@@ -60,52 +58,47 @@ Each student will predict the **daily average temperature (°F)** in **New York 
 You will:
 
 1. **Collect data** you consider relevant (e.g., historical weather for NYC, NOAA, ECMWF forecasts, etc.).
-2. **Choose a model** and **specify a prior** (Bayesian is required). Any reasonable model is allowed (ARIMA with Bayesian priors, Bayesian linear regression with weather covariates, Bayesian calibration of forecast ensembles, etc.).
-3. **Produce for each date** (d\in{3,4,5,6,7}):
+2. **Choose a model** and **specify a prior** (Bayesian is required or score will be zero). Any reasonable model is allowed (ARIMA with Bayesian priors, Bayesian linear regression with weather covariates, Bayesian calibration of forecast ensembles, etc.).
+3. **Produce for each date** $d\in\\{3,4,5,6,7\\}$:
 
-   * a **point prediction** (mean) (\hat{y}_d) in **°F**,
-   * a **two–sided** **((1-\alpha))** **credible/confidence interval** ([L_d, U_d]) in **°F** (you choose the level, e.g. 80%, 90%, 95%).
-4. **Submit two things on Canvas**:
+   * a **point prediction** (mean) $\hat{y}_d$ in **°F**,
+   * a **two–sided** **$(1-\alpha)$** **credible/confidence interval** $[L_d, U_d]$ in **°F** (you choose the level, e.g. 80%, 90%, 95%).
 
-   * A **PDF (max 2 pages)**: data sources, what data you used, model summary, priors, and how you computed (\hat{y}_d), ([L_d,U_d]).
-   * Your **code** that **directly prints** all **15 numbers** (five means, five lower bounds, five upper bounds) in a simple, machine–readable way (e.g., CSV/JSON print or console print).
-5. **Enter the 15 numbers on this page** using the submission form (below). You can submit **one day at a time** as your forecasts are ready.
+4. **Submit two things on Canvas**: Submit a **PDF** with the following constraints: 
+   * The first part of the pdf is **max 2 pages** in which you explain: data sources, what data you used, model summary, priors, and how you computed $\hat{y}_d$, $[L_d,U_d]$.
+   * The rest of the PDF is your **code** with the following instructions: no page limit, the final output of the code has to be a table $3 \times 5$. Row 1 is the mean temeperature, row 2 is the lower CI bound and row 3 is the upper CI bound, for a total of 15 predictions. the table has to be a direct output of the code (copy and paste is not allowed).
 
-> **Formatting**: All temperatures must be in **Fahrenheit**, numeric with **exactly two decimals** (e.g., `35.67`).
+5. **Submit your data into the Excel file provided in Canvas** using the following formatting: All temperatures must be in **Fahrenheit**, numeric with **exactly two decimals** (e.g., 35.67). For each date, submit 3 numbers divided by comma. 
+\\[
+\text{ e.g. } \quad 44.13, 40.10, 46.15
+\\]
+The first number is the daily average predicted temperature, the second is the lower CI bound, the last is the upper CI bound. An example can be found at the bottom of the Excel file provided in Canvas.
+
+> **Deadline**: Ultimate deadline is Decmeber 1 st, 11:59 PM for both PDF submission and Excel submission. Only Excel submission  or PDF will get zero score.
 
 ---
 
-## Scoring (2.5 course points total)
+## Scoring
 
-After each of the five dates passes, we take the **true observed NYC average temperature** for that day (from a fixed source I disclose in class). For each day (d):
+The maximim points for this activity is 2.5; divided as follows: 1 point is given to the clearness of the pdf submission. The additional 1.5 is calculated as follows. After each of the five dates passes, we take the **true observed NYC average temperature** for that day (from a fixed source I disclose in class). For each day (d):
 
-* If the truth (y^{\text{true}}_d\notin[L_d,U_d]), your **day score** is (S_d=0).
-* If (y^{\text{true}}_d\in[L_d,U_d]), your score **decreases** with the absolute error and with the interval length. We propose the smooth, bounded function:
+* If the truth $y^{\text{true}}_d\notin[L_d,U_d]$, your **day score** is $S_d=0$.
+* If $y^{\text{true}}_d\in[L_d,U_d]$, your score **decreases** with the absolute error and with the interval length. We propose the smooth, bounded function:
 
-[
+\\[
 S_d
-= \exp\big(-\alpha,|,y^{\text{true}}_d - \hat{y}_d,|\big);\times;\exp\big(-\beta,(U_d-L_d)\big);\times;\mathbf{1}{y^{\text{true}}_d\in[L_d,U_d]},
-]
+= \exp\big(-\alpha|y^{\text{true}}_d - \hat{y}_d|\big)\times\exp\big(-\beta(U_d-L_d)\big)\times\mathbf{1}\\{y^{\text{true}}_d\in[L_d,U_d]\\},
+\\]
 
-with **default parameters** (\alpha=0.10) (per °F) and (\beta=0.05) (per °F). Thus (0\le S_d\le 1). You may suggest alternative ((\alpha,\beta)) in your PDF; we will keep them fixed for all students.
+with **default parameters** $\alpha=0.10$ (per °F) and $\beta=0.05$ (per °F). Thus $0\le S_d\le 1$.
 
-**Final activity score**:
-[
-\text{Points} = 2.5\times \frac{1}{5}\sum_{d\in{3,4,5,6,7}} S_d.
-]
+**Final activity score**: up to 1 point for the pdf plus
+\\[
+\text{Points} = 1.5\times \frac{1}{5}\sum_{d\in{3,4,5,6,7}} S_d.
+\\]
 
-> **Alternative linear option** (equivalent, if we need a piecewise–linear rubric):
-> (S_d = \max{0,; 1 - a,|e_d| - b,(U_d-L_d)}) for tuned ((a,b)). We will use the exponential version above by default (smoother, differentiable, scale–aware).
 
----
-
-## Submission — enter your predictions here
-
-You can submit **one day per entry**. You may update your entry for a day **until 11:59 PM the day before** (Canvas timestamp). Only the **latest valid** entry counts.
-
-> **Eligibility**: You must use your **UMich uniqname** (lowercase letters/digits, e.g. `dbracale`). Optionally, we may restrict to a **whitelist** of uniqnames (managed by staff); the backend will reject non–whitelisted IDs if enabled.
-
-<div id="a3-messages" aria-live="polite"></div>
+<!-- <div id="a3-messages" aria-live="polite"></div>
 
 <form class="activity3" id="activity3-form" novalidate>
   <fieldset>
@@ -151,8 +144,9 @@ You can submit **one day per entry**. You may update your entry for a day **unti
   </div>
 
   <div class="help">Logged-in @umich.edu only. You may re-submit a day; the latest submission before the deadline is used.</div>
-</form>
+</form> -->
 
+<!-- 
 {% raw %}
 <script>
 (() => {
@@ -225,9 +219,9 @@ You can submit **one day per entry**. You may update your entry for a day **unti
 })();
 </script>
 
-{% endraw %}
+{% endraw %} -->
 
----
+<!-- ---
 
 ## Grading helper (Python & R snippets)
 
@@ -282,22 +276,12 @@ res <- latest |> rowwise() |
 print(res)
 ```
 
----
+--- -->
 
-## FAQ / Notes for students
+<!-- ## FAQ / Notes for students
 
 * **Units**: Always Fahrenheit with **two decimals**.
 * **One day per submission**: You can submit Dec 3 today and Dec 4 tomorrow, etc.
 * **Updates**: Only the **latest** valid entry before the deadline is graded.
 * **Intervals**: You choose the level (e.g., 90%). Wider intervals are safer but lower your score; too narrow risks 0 if truth falls outside.
-* **Modeling guidance**: Mention your priors and how you computed the interval (central credible interval, HPD, bootstrap percentile, etc.). Attach references if you used external forecasts.
-
----
-
-## (Staff) Quick checklist to go live
-
-* [ ] Create the Google Sheet with ''Submissions'' + ''Whitelist'' tabs and headers.
-* [ ] Deploy the Apps Script Web App; copy URL into ''ENDPOINT''.
-* [ ] (Optional) populate ''Whitelist'' with uniqnames; otherwise leave blank.
-* [ ] Publish the page and test a submission.
-* [ ] Share the canonical truth source in class (and freeze it before grading).
+* **Modeling guidance**: Mention your priors and how you computed the interval (central credible interval, HPD, bootstrap percentile, etc.). Attach references if you used external forecasts. -->
