@@ -201,7 +201,7 @@ At each round \\(t\\):
 
 This randomized choice naturally balances exploration (trying uncertain ads) and exploitation (favoring ads likely to have high CTR). 
 
-**Remark (regret behavior).** In the Bernoulli bandit, the Greedy policy has linear regret \\(\mathbb{E}[R_T]=O(T)\\), while TS achieves logarithmic expected regret (order-optimal): \\(\mathbb{E}[R_T]=O\left(\sum_{k\neq k^\star}\frac{\log T}{\Delta_k}\right)\\) under standard conditions.
+<!-- **Remark (regret behavior).** In the Bernoulli bandit, the Greedy policy has linear regret \\(\mathbb{E}[R_T]=O(T)\\), while TS achieves logarithmic expected regret (order-optimal): \\(\mathbb{E}[R_T]=O\left(\sum_{k\neq k^\star}\frac{\log T}{\Delta_k}\right)\\) under standard conditions. -->
 
 ---
 
