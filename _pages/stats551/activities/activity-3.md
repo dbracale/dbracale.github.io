@@ -58,21 +58,22 @@ Each student will predict the **daily average temperature (°F)** in **New York 
 You will:
 
 1. **Collect data** you consider relevant (e.g., historical weather for NYC, NOAA, ECMWF forecasts, etc.).
-2. **Choose a model** and **specify a prior** (Bayesian is required or score will be zero). Any reasonable model is allowed (ARIMA with Bayesian priors, Bayesian linear regression with weather covariates, Bayesian calibration of forecast ensembles, etc.).
+2. **Choose a model** (Bayesian is required or score will be zero). Any reasonable model is allowed (ARIMA with Bayesian priors, Bayesian linear regression with weather covariates, Bayesian calibration of forecast ensembles, etc.).
 3. **Produce for each date** $d\in\\{3,4,5,6,7\\}$:
 
-   * a **point prediction** (mean) $\hat{y}_d$ in **°F**,
-   * a **two–sided** **$(1-\alpha)$** **credible/confidence interval** $[L_d, U_d]$ in **°F** (you choose the level, e.g. 80%, 90%, 95%).
+   * a **point prediction** (average daily temperature) $\hat{y}_d$ in **°F**,
+   * a **two–sided interval** $[L_d, U_d]$ in **°F** (you choose the level, e.g. 80%, 90%, 95%). You can choose the confidence interval (CI) however you prefer, but as explained in the "Score" section below, if it’s too wide or too narrow, you may lose points. Be careful!
 
-4. **Submit two things on Canvas**: Submit a **PDF** with the following constraints: 
-   * The first part of the pdf is **max 2 pages** in which you explain: data sources, what data you used, model summary, priors, and how you computed $\hat{y}_d$, $[L_d,U_d]$.
-   * The rest of the PDF is your **code** with the following instructions: no page limit, the final output of the code has to be a table $3 \times 5$. Row 1 is the mean temeperature, row 2 is the lower CI bound and row 3 is the upper CI bound, for a total of 15 predictions. the table has to be a direct output of the code (copy and paste is not allowed).
+4. **Submit two things on Canvas**: 
+    - Submit a **PDF** with the following constraints: 
+      * The first part of the pdf is **max 2 pages** in which you explain: data sources, what data you used, model summary, priors, and how you computed $\hat{y}_d$, $[L_d,U_d]$.
+      * The rest of the PDF is your **code** with the following instructions: no page limit, the final output of the code has to be a table $3 \times 5$. Row 1 is the mean temeperature, row 2 is the lower CI bound and row 3 is the upper CI bound, for a total of 15 predictions. the table has to be a direct output of the code (copy and paste is not allowed).
 
-5. **Submit your data into the Excel file provided in Canvas** using the following formatting: All temperatures must be in **Fahrenheit**, numeric with **exactly two decimals** (e.g., 35.67). For each date, submit 3 numbers divided by comma. 
-\\[
-\text{ e.g. } \quad 44.13, 40.10, 46.15
-\\]
-The first number is the daily average predicted temperature, the second is the lower CI bound, the last is the upper CI bound. An example can be found at the bottom of the Excel file provided in Canvas.
+    - **Submit your data into the Excel file provided in Canvas** using the following formatting: All temperatures must be in **Fahrenheit**, numeric with **exactly two decimals** (e.g., 35.67). For each date, submit 3 numbers divided by comma. 
+      \\[
+      \text{ e.g. } \quad 44.13, 40.10, 46.15
+      \\]
+    The first number is the daily average predicted temperature, the second is the lower CI bound, the last is the upper CI bound. An example can be found at the bottom of the Excel file provided in Canvas.
 
 > **Deadline**: Ultimate deadline is Decmeber 1 st, 11:59 PM for both PDF submission and Excel submission. Only Excel submission  or PDF will get zero score.
 
@@ -90,11 +91,11 @@ S_d
 = \exp\big(-\alpha|y^{\text{true}}_d - \hat{y}_d|\big)\times\exp\big(-\beta(U_d-L_d)\big)\times\mathbf{1}\\{y^{\text{true}}_d\in[L_d,U_d]\\},
 \\]
 
-with **default parameters** $\alpha=0.10$ (per °F) and $\beta=0.05$ (per °F). Thus $0\le S_d\le 1$.
+with **default parameters** $\alpha=0.10$ (per °F) and $\beta=0.05$ (per °F). Thus $0\le S_d\le 1$. To help overall students score these parameter might be adjusted.
 
 **Final activity score**: up to 1 point for the pdf plus
 \\[
-\text{Points} = 1.5\times \frac{1}{5}\sum_{d\in{3,4,5,6,7}} S_d.
+\text{Points} = 1.5\times \frac{1}{5}\sum_{d\in\\{3,4,5,6,7\\}} S_d.
 \\]
 
 
