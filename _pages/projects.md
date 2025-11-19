@@ -22,3 +22,5 @@ author_profile: true
 * [Dynamic Pricing in the Linear Valuation Model using Shape Constraints](https://arxiv.org/abs/2502.05776)
 
 * [Revenue Maximization Under Sequential Price Competition Via The Estimation Of s-Concave Demand Functions](https://arxiv.org/abs/2503.16737) (Preprint)
+
+* [Online Price Competition under Generalized Linear Demands](https://www.arxiv.org/abs/2511.10718) (Preprint)
