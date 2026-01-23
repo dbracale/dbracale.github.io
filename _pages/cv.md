@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Curriculum Vitae"
+title: "Resume"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -11,7 +11,7 @@ redirect_from:
 
 <!-- Download CV Button -->
 <div style="text-align: center; margin-top: 20px;">
-    <a href="{{ site.baseurl }}/assets/cv/Daniele_Bracale_CV.pdf" class="btn--primary" download>Download CV</a>
+    <a href="{{ site.baseurl }}/assets/cv/Daniele_Bracale_CV.pdf" class="btn--primary" download>Download Resume</a>
 </div>
 
 
