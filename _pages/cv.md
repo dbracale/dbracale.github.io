@@ -1,22 +1,22 @@
 ---
 layout: archive
-title: "Resume"
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
-  - /resume
+  - /cv
 ---
 
 {% include base_path %}
 
-<!-- Download CV Button -->
+<!-- Download Curriculum Vitae Button -->
 <div style="text-align: center; margin-top: 20px;">
-    <a href="{{ site.baseurl }}/assets/cv/Daniele_Bracale_CV.pdf" class="btn--primary" download>Download Resume</a>
+    <a href="{{ site.baseurl }}/assets/cv/Daniele_Bracale_cv.pdf" class="btn--primary" download>Download Curriculum Vitae</a>
 </div>
 
 
 
 <!-- Embed PDF -->
 <div class="pdf-container">
-  <iframe src="{{ site.baseurl }}/assets/cv/Daniele_Bracale_CV.pdf"></iframe>
+  <iframe src="{{ site.baseurl }}/assets/cv/Daniele_Bracale_cv.pdf"></iframe>
 </div>
