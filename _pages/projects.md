@@ -24,3 +24,5 @@ author_profile: true
 * [Revenue Maximization Under Sequential Price Competition Via The Estimation Of s-Concave Demand Functions](https://arxiv.org/abs/2503.16737)
 
 * [Online Price Competition under Generalized Linear Demands](https://www.arxiv.org/abs/2511.10718) (Preprint)
+
+* [Equilibrium and Pricing in Consumer Networks with Nonlinear Utilities: An Online Shape-Constrained Learning Approach](https://arxiv.org/abs/2605.14193) (Preprint)
