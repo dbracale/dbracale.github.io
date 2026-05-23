@@ -9,7 +9,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a fourth-year PhD student in Statistics at the University of Michigan, Ann Arbor. My research interests broadly lie in machine learning, probability theory, and statistics, with a particular focus on the connection between shape constraints and dynamic pricing. I graduated from the University of Turin with a BSc in Mathematics and an MSc in Stochastics and Data Science.
+I am a Ph.D. candidate in Statistics at the University of Michigan, Ann Arbor. My research interests broadly lie in machine learning, probability theory, and statistics, with a particular focus on the connection between shape constraints and dynamic pricing. I graduated from the University of Turin with a BSc in Mathematics and an MSc in Stochastics and Data Science.
 
 I have a deep passion for teaching, and my approach is centered on simplifying complex concepts to make them accessible to everyone. My goal is to empower students to derive results through logical reasoning rather than relying on memorization. Beyond teaching, I love music, enjoy traveling, boxing, and biking.
 
