@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Resume"
+title: ""
 permalink: /resume/
 author_profile: true
 redirect_from:
@@ -9,14 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
-<!-- Download Resume Button -->
-<div style="text-align: center; margin-top: 20px;">
-    <a href="{{ site.baseurl }}/assets/resume/Daniele_Bracale_resume.pdf" class="btn--primary" download>Download Resume</a>
-</div>
-
-
-
-<!-- Embed PDF -->
-<div class="pdf-container">
-  <iframe src="{{ site.baseurl }}/assets/resume/Daniele_Bracale_resume.pdf"></iframe>
-</div>
+<embed
+  src="{{ site.baseurl }}/assets/resume/Daniele_Bracale_resume.pdf"
+  type="application/pdf"
+  width="100%"
+  style="display:block;border:none;border-radius:8px;height:calc(100vh - 120px);">
