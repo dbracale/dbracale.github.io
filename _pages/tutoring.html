@@ -1,0 +1,916 @@
+---
+layout: archive
+title: ""
+permalink: /tutoring/
+author_profile: true
+---
+
+<style>
+/* =============================================
+   TUTORING BOOKING PAGE
+   Matches dark theme: bg #242424, accent #52adc8
+   ============================================= */
+
+.booking-hero {
+  text-align: center;
+  padding: 2em 0 1.5em;
+}
+
+.booking-hero h1 {
+  font-family: "EB Garamond", Georgia, serif !important;
+  font-size: 2em;
+  color: #e0e0e0;
+  margin-bottom: 0.3em;
+  font-weight: 600;
+}
+
+.booking-hero p {
+  color: #9a9ea2;
+  font-size: 1em;
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ---- Cards ---- */
+.booking-card {
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  padding: 1.8em 2em;
+  margin-bottom: 1.5em;
+}
+
+.booking-card h2 {
+  font-family: "EB Garamond", Georgia, serif !important;
+  font-size: 1.15em;
+  color: #52adc8;
+  margin: 0 0 1.2em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #2f2f2f;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Form fields ---- */
+.form-row {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82em;
+  color: #9a9ea2;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.4em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 0.95em;
+  padding: 0.55em 0.8em;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #52adc8;
+  background: #252525;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-group select option {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+/* ---- Subject chips ---- */
+.subject-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+
+.subject-chip input[type="radio"] {
+  display: none;
+}
+
+.subject-chip label {
+  display: inline-block;
+  padding: 0.4em 1em;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 20px;
+  color: #b0b4b8;
+  font-size: 0.88em;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.subject-chip input[type="radio"]:checked + label {
+  background: #1a3d4e;
+  border-color: #52adc8;
+  color: #52adc8;
+}
+
+.subject-chip label:hover {
+  border-color: #52adc8;
+  color: #c0d8df;
+}
+
+/* ---- Calendar ---- */
+.calendar-wrapper {
+  user-select: none;
+}
+
+.calendar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.calendar-nav button {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #9a9ea2;
+  cursor: pointer;
+  padding: 0.3em 0.8em;
+  font-size: 1em;
+  transition: all 0.18s;
+}
+
+.calendar-nav button:hover {
+  border-color: #52adc8;
+  color: #52adc8;
+}
+
+.calendar-month-label {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 1.1em;
+  color: #e0e0e0;
+  letter-spacing: 1px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-day-header {
+  text-align: center;
+  font-size: 0.72em;
+  color: #6a7075;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 0.4em;
+}
+
+.cal-day {
+  text-align: center;
+  padding: 0.45em 0.2em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  cursor: default;
+  color: #4a4e52;
+  transition: all 0.15s;
+}
+
+.cal-day.available {
+  background: #1d3540;
+  color: #7ec8d8;
+  cursor: pointer;
+}
+
+.cal-day.available:hover {
+  background: #2a4d5e;
+  color: #52adc8;
+}
+
+.cal-day.selected {
+  background: #52adc8!important;
+  color: #1a1a1a !important;
+  font-weight: 700;
+}
+
+.cal-day.today {
+  border: 1px solid #3a5560;
+}
+
+.cal-day.other-month {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Time slots ---- */
+.timeslot-area {
+  margin-top: 1.2em;
+}
+
+.timeslot-area h3 {
+  font-size: 0.85em;
+  color: #9a9ea2;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 0.7em;
+  font-family: inherit !important;
+  font-weight: normal;
+}
+
+.timeslot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.timeslot-btn {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #9a9ea2;
+  font-size: 0.88em;
+  padding: 0.4em 0.9em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.timeslot-btn:hover {
+  border-color: #52adc8;
+  color: #52adc8;
+}
+
+.timeslot-btn.selected {
+  background: #1a3d4e;
+  border-color: #52adc8;
+  color: #52adc8;
+  font-weight: 600;
+}
+
+.timeslot-hint {
+  font-size: 0.83em;
+  color: #5a6065;
+  margin-top: 0.5em;
+}
+
+.timepicker-label {
+  font-size: 0.78em;
+  color: #6a7075;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.45em;
+}
+
+.platform-note {
+  margin-top: 0.9em;
+  background: #1a2e35;
+  border-left: 3px solid #52adc8;
+  border-radius: 0 6px 6px 0;
+  padding: 0.6em 0.9em;
+  font-size: 0.85em;
+  color: #9accd8;
+  line-height: 1.5;
+}
+
+/* ---- Submit button ---- */
+.btn-submit {
+  display: block;
+  width: 100%;
+  background: #52adc8;
+  color: #1a1a1a;
+  font-size: 1em;
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 0.75em 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5em;
+}
+
+.btn-submit:hover {
+  background: #3d9bb3;
+}
+
+.btn-submit:disabled {
+  background: #2a4a55;
+  color: #4a6e78;
+  cursor: not-allowed;
+}
+
+/* ---- Confirmation ---- */
+.booking-confirm {
+  display: none;
+  background: #1a2e35;
+  border: 1px solid #52adc8;
+  border-radius: 10px;
+  padding: 2.5em 2em;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.booking-confirm .confirm-icon {
+  font-size: 2.5em;
+  margin-bottom: 0.3em;
+}
+
+.booking-confirm h2 {
+  font-family: "EB Garamond", Georgia, serif !important;
+  color: #52adc8;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+  border: none;
+  padding: 0;
+}
+
+.booking-confirm p {
+  color: #9a9ea2;
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+.booking-confirm strong {
+  color: #e0e0e0;
+}
+
+/* ---- Error ---- */
+.field-error {
+  font-size: 0.78em;
+  color: #e07070;
+  margin-top: 0.25em;
+}
+
+.booking-error-msg {
+  background: #3a1a1a;
+  border: 1px solid #ee5f5b;
+  border-radius: 6px;
+  color: #e07070;
+  font-size: 0.88em;
+  padding: 0.7em 1em;
+  margin-bottom: 1em;
+  display: none;
+}
+
+/* ---- Legend ---- */
+.calendar-legend {
+  display: flex;
+  gap: 1.2em;
+  margin-top: 0.8em;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.78em;
+  color: #7a8288;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.legend-dot.available  { background: #1d3540; }
+.legend-dot.selected   { background: #52adc8; }
+.legend-dot.unavailable{ background: #252525; border: 1px solid #2f2f2f; }
+</style>
+
+<!-- ==================== HERO ==================== -->
+<div class="booking-hero">
+  <h1>Book a Tutoring Session</h1>
+  <p>Use this form to book a free <strong style="color:#e0e0e0">30-minute introductory call</strong> — we'll talk about what you need, your timeline, and how I can help. I'll do my best to accommodate your preferred date and time, and will confirm everything by email.</p>
+</div>
+
+<!-- ==================== FORM ==================== -->
+<div id="booking-form-wrapper">
+
+  <div id="booking-error-msg" class="booking-error-msg">
+    Something went wrong. Please try again or email me directly at <a href="mailto:dbracale@umich.edu" style="color:#e07070">dbracale@umich.edu</a>.
+  </div>
+
+  <!-- 1. Personal info -->
+  <div class="booking-card">
+    <h2>Your Information</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="first-name">First Name *</label>
+        <input type="text" id="first-name" placeholder="John" autocomplete="given-name">
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name *</label>
+        <input type="text" id="last-name" placeholder="Smith" autocomplete="family-name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="student-email">Your Email *</label>
+        <input type="email" id="student-email" placeholder="you@university.edu" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="course-type">Course / Program *</label>
+        <input type="text" id="course-type" placeholder="e.g. STATS 426, BSc Mathematics…">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="timezone">Your Timezone *</label>
+        <select id="timezone"></select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Subject -->
+  <div class="booking-card">
+    <h2>Subject</h2>
+    <div class="subject-grid">
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-calc" value="Calculus / Mathematical Analysis">
+        <label for="s-calc">Calculus / Analysis</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-linalg" value="Linear Algebra">
+        <label for="s-linalg">Linear Algebra</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-prob" value="Probability Theory">
+        <label for="s-prob">Probability</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-stats" value="Statistics">
+        <label for="s-stats">Statistics</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-ml" value="Machine Learning / Data Science">
+        <label for="s-ml">Machine Learning</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-geom" value="Geometry">
+        <label for="s-geom">Geometry</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-stoch" value="Stochastic Processes">
+        <label for="s-stoch">Stochastic Processes</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="subject" id="s-other" value="Other (see comment)">
+        <label for="s-other">Other</label>
+      </span>
+    </div>
+  </div>
+
+  <!-- 3. Meeting platform -->
+  <div class="booking-card">
+    <h2>Meeting Platform</h2>
+    <div class="subject-grid">
+      <span class="subject-chip">
+        <input type="radio" name="platform" id="p-zoom" value="Zoom" onchange="onPlatformChange()">
+        <label for="p-zoom">Zoom</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="platform" id="p-meet" value="Google Meet" onchange="onPlatformChange()">
+        <label for="p-meet">Google Meet</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="platform" id="p-teams" value="Microsoft Teams" onchange="onPlatformChange()">
+        <label for="p-teams">Teams</label>
+      </span>
+      <span class="subject-chip">
+        <input type="radio" name="platform" id="p-other" value="Other" onchange="onPlatformChange()">
+        <label for="p-other">Other</label>
+      </span>
+    </div>
+
+    <!-- Note for known platforms -->
+    <div id="platform-note" class="platform-note" style="display:none"></div>
+
+    <!-- Extra fields for Other -->
+    <div id="platform-other-fields" style="display:none;margin-top:1em">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="platform-name">Platform name *</label>
+          <input type="text" id="platform-name" placeholder="e.g. WhatsApp, Skype, Discord…">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="platform-email">Account email or username <span style="color:#5a6065">(if applicable)</span></label>
+          <input type="text" id="platform-email" placeholder="e.g. yourname@example.com">
+        </div>
+        <div class="form-group">
+          <label for="platform-phone">Phone number <span style="color:#5a6065">(e.g. for WhatsApp)</span></label>
+          <input type="tel" id="platform-phone" placeholder="e.g. +1 555 123 4567">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Calendar -->
+  <div class="booking-card">
+    <h2>Pick a Date &amp; Time</h2>
+    <div class="calendar-wrapper">
+      <div class="calendar-nav">
+        <button id="cal-prev" aria-label="Previous month">&#8249;</button>
+        <span class="calendar-month-label" id="cal-month-label"></span>
+        <button id="cal-next" aria-label="Next month">&#8250;</button>
+      </div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+      <div class="calendar-legend">
+        <div class="legend-item"><div class="legend-dot available"></div> Available</div>
+        <div class="legend-item"><div class="legend-dot selected"></div> Selected</div>
+        <div class="legend-item"><div class="legend-dot unavailable"></div> Unavailable</div>
+      </div>
+    </div>
+
+    <div class="timeslot-area" id="timeslot-area" style="display:none">
+      <h3>Available times on <span id="selected-date-label"></span> <span style="font-weight:normal;color:#5a6065" id="tz-label-inline"></span></h3>
+      <div class="timepicker-label">Hour</div>
+      <div class="timeslot-grid" id="hour-grid"></div>
+      <div id="minute-area" style="display:none">
+        <div class="timepicker-label" style="margin-top:0.9em">Minutes</div>
+        <div class="timeslot-grid" id="minute-grid"></div>
+      </div>
+    </div>
+    <p class="timeslot-hint" id="calendar-hint">Click an available (highlighted) day to see time slots.</p>
+  </div>
+
+  <!-- 4. Comment -->
+  <div class="booking-card">
+    <h2>Additional Notes <span style="color:#5a6065;font-weight:normal;font-size:0.85em">(optional)</span></h2>
+    <div class="form-group" style="margin-bottom:0">
+      <textarea id="comment" placeholder="Describe what you need help with, your level, any specific topics…"></textarea>
+    </div>
+  </div>
+
+  <!-- 5. Submit -->
+  <button class="btn-submit" id="btn-submit" onclick="submitBooking()">Book Session</button>
+
+</div><!-- /booking-form-wrapper -->
+
+<!-- ==================== CONFIRMATION ==================== -->
+<div class="booking-confirm" id="booking-confirm">
+  <div class="confirm-icon">✓</div>
+  <h2>Session Booked!</h2>
+  <p id="confirm-text">Your request has been received. I'll get back to you shortly via email to confirm the date and time.</p>
+  <p style="margin-top:1.2em;font-size:0.82em;color:#5a6065">Questions? Write to <a href="mailto:dbracale@umich.edu" style="color:#52adc8">dbracale@umich.edu</a></p>
+</div>
+
+
+<script>
+/* =====================================================
+   AVAILABILITY CONFIGURATION
+   All days, every hour from 8:00 to 21:00.
+   Edit SLOTS or ALL_DAYS to restrict if needed.
+   ===================================================== */
+const ALL_SLOTS = [];
+for (let h = 8; h <= 21; h++) ALL_SLOTS.push(String(h).padStart(2,"0") + ":00");
+
+const AVAILABILITY = {};
+for (let d = 0; d <= 6; d++) AVAILABILITY[d] = ALL_SLOTS;  // 0=Sun … 6=Sat
+
+/* =====================================================
+   FORMSPREE SETUP
+   1. Go to https://formspree.io and sign up (free)
+   2. Create a new form → get your Form ID (8 chars)
+   3. Replace YOUR_FORM_ID below
+   ===================================================== */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojzvkba";
+
+/* ===================================================== */
+
+const MONTH_NAMES = ["January","February","March","April","May","June",
+                     "July","August","September","October","November","December"];
+const DAY_NAMES   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+let currentYear, currentMonth;
+let selectedDate   = null;  // Date object
+let selectedHour   = null;  // 8..21
+let selectedMinute = null;  // 0, 15, 30, 45
+let selectedSlot   = null;  // "HH:MM" combined
+
+/* ---- Timezone selector ---- */
+const COMMON_TZ = [
+  "America/New_York","America/Chicago","America/Denver","America/Los_Angeles",
+  "America/Anchorage","America/Honolulu","America/Toronto","America/Vancouver",
+  "America/Sao_Paulo","America/Argentina/Buenos_Aires","America/Mexico_City",
+  "Europe/London","Europe/Paris","Europe/Berlin","Europe/Rome","Europe/Madrid",
+  "Europe/Amsterdam","Europe/Stockholm","Europe/Warsaw","Europe/Athens",
+  "Europe/Moscow","Asia/Dubai","Asia/Kolkata","Asia/Bangkok","Asia/Singapore",
+  "Asia/Shanghai","Asia/Tokyo","Asia/Seoul","Australia/Sydney","Pacific/Auckland"
+];
+
+function populateTimezones() {
+  const sel = document.getElementById("timezone");
+  const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const list = COMMON_TZ.includes(detected)
+    ? [detected, ...COMMON_TZ.filter(z => z !== detected)]
+    : [detected, ...COMMON_TZ];
+  list.forEach(tz => {
+    const opt = document.createElement("option");
+    opt.value = tz;
+    opt.textContent = tz.replace(/_/g," ");
+    if (tz === detected) opt.textContent += " (your local time)";
+    sel.appendChild(opt);
+  });
+}
+
+function onPlatformChange() {
+  const val   = document.querySelector('input[name="platform"]:checked')?.value;
+  const note  = document.getElementById("platform-note");
+  const extra = document.getElementById("platform-other-fields");
+
+  const NOTES = {
+    "Zoom":             "Make sure your Zoom account is linked to the email address you provided above. If it isn't, please select <em>Other</em> and specify the email associated with your Zoom account.",
+    "Google Meet":      "Make sure your Google account matches the email address you provided above. If it doesn't, please select <em>Other</em> and specify the correct Google email.",
+    "Microsoft Teams":  "Make sure your Microsoft Teams account is linked to the email address you provided above. If it isn't, please select <em>Other</em> and specify the email associated with your Teams account."
+  };
+
+  if (val && NOTES[val]) {
+    note.innerHTML  = NOTES[val];
+    note.style.display = "block";
+    extra.style.display = "none";
+  } else if (val === "Other") {
+    note.style.display  = "none";
+    extra.style.display = "block";
+  } else {
+    note.style.display  = "none";
+    extra.style.display = "none";
+  }
+}
+
+function init() {
+  populateTimezones();
+  const now = new Date();
+  currentYear  = now.getFullYear();
+  currentMonth = now.getMonth();
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const grid  = document.getElementById("calendar-grid");
+  const label = document.getElementById("cal-month-label");
+  label.textContent = MONTH_NAMES[currentMonth] + " " + currentYear;
+  grid.innerHTML = "";
+
+  // Day headers
+  DAY_NAMES.forEach(d => {
+    const el = document.createElement("div");
+    el.className = "cal-day-header";
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Leading blanks
+  for (let i = 0; i < firstDay; i++) {
+    const el = document.createElement("div");
+    el.className = "cal-day other-month";
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(currentYear, currentMonth, d);
+    const dow  = date.getDay();
+    const el   = document.createElement("div");
+    el.textContent = d;
+    el.className = "cal-day";
+
+    const isAvailable = date >= today && AVAILABILITY.hasOwnProperty(dow);
+    if (isAvailable) {
+      el.classList.add("available");
+      el.addEventListener("click", () => selectDate(date, el));
+    }
+    if (date.toDateString() === today.toDateString()) el.classList.add("today");
+
+    if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+      el.classList.add("selected");
+    }
+    grid.appendChild(el);
+  }
+}
+
+function selectDate(date, el) {
+  selectedDate   = date;
+  selectedHour   = null;
+  selectedMinute = null;
+  selectedSlot   = null;
+  renderCalendar();
+  renderHours();
+}
+
+function renderHours() {
+  const area  = document.getElementById("timeslot-area");
+  const label = document.getElementById("selected-date-label");
+  const hint  = document.getElementById("calendar-hint");
+  const tz    = document.getElementById("timezone").value;
+
+  label.textContent = selectedDate.toLocaleDateString("en-US",
+    {weekday:"long", month:"long", day:"numeric"});
+  const tzInline = document.getElementById("tz-label-inline");
+  if (tzInline) tzInline.textContent = tz ? "(" + tz.replace(/_/g," ") + ")" : "";
+
+  area.style.display = "block";
+  hint.style.display = "none";
+
+  const hourGrid = document.getElementById("hour-grid");
+  hourGrid.innerHTML = "";
+  document.getElementById("minute-area").style.display = "none";
+
+  for (let h = 8; h <= 21; h++) {
+    const btn = document.createElement("button");
+    btn.className = "timeslot-btn" + (h === selectedHour ? " selected" : "");
+    btn.textContent = formatHour(h);
+    btn.onclick = () => {
+      selectedHour   = h;
+      selectedMinute = null;
+      selectedSlot   = null;
+      document.querySelectorAll("#hour-grid .timeslot-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      renderMinutes();
+    };
+    hourGrid.appendChild(btn);
+  }
+
+  if (selectedHour !== null) renderMinutes();
+}
+
+function renderMinutes() {
+  const minuteArea = document.getElementById("minute-area");
+  const minuteGrid = document.getElementById("minute-grid");
+  minuteArea.style.display = "block";
+  minuteGrid.innerHTML = "";
+
+  [0, 15, 30, 45].forEach(m => {
+    const btn = document.createElement("button");
+    btn.className = "timeslot-btn" + (m === selectedMinute ? " selected" : "");
+    btn.textContent = formatHour(selectedHour) + ":" + String(m).padStart(2,"0");
+    btn.onclick = () => {
+      selectedMinute = m;
+      selectedSlot   = String(selectedHour).padStart(2,"0") + ":" + String(m).padStart(2,"0");
+      document.querySelectorAll("#minute-grid .timeslot-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+    };
+    minuteGrid.appendChild(btn);
+  });
+}
+
+function formatHour(h) {
+  const ampm = h >= 12 ? "PM" : "AM";
+  const h12  = h % 12 || 12;
+  return h12 + " " + ampm;
+}
+
+function formatTime(t) {
+  const [h, m] = t.split(":").map(Number);
+  const ampm = h >= 12 ? "PM" : "AM";
+  const h12  = h % 12 || 12;
+  return h12 + ":" + String(m).padStart(2,"0") + " " + ampm;
+}
+
+document.getElementById("cal-prev").onclick = () => {
+  currentMonth--;
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  renderCalendar();
+};
+document.getElementById("cal-next").onclick = () => {
+  currentMonth++;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  renderCalendar();
+};
+
+/* =====================================================
+   FORM SUBMISSION
+   ===================================================== */
+async function submitBooking() {
+  // --- Collect & validate ---
+  const firstName = document.getElementById("first-name").value.trim();
+  const lastName  = document.getElementById("last-name").value.trim();
+  const email     = document.getElementById("student-email").value.trim();
+  const course    = document.getElementById("course-type").value.trim();
+  const timezone  = document.getElementById("timezone").value;
+  const comment   = document.getElementById("comment").value.trim();
+  const subjectEl  = document.querySelector('input[name="subject"]:checked');
+  const subject    = subjectEl ? subjectEl.value : "";
+  const platformEl    = document.querySelector('input[name="platform"]:checked');
+  const platform      = platformEl ? platformEl.value : "";
+  const platformName  = document.getElementById("platform-name").value.trim();
+  const platformEmail = document.getElementById("platform-email").value.trim();
+  const platformPhone = document.getElementById("platform-phone").value.trim();
+
+  let valid = true;
+
+  // Simple required-field highlight
+  ["first-name","last-name","student-email","course-type"].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.style.borderColor = "#e07070";
+      valid = false;
+    } else {
+      el.style.borderColor = "";
+    }
+  });
+
+  if (!subject)      { valid = false; alert("Please select a subject."); return; }
+  if (!platform)     { valid = false; alert("Please select a meeting platform."); return; }
+  if (platform === "Other" && !platformName) {
+    document.getElementById("platform-name").style.borderColor = "#e07070";
+    valid = false; alert("Please specify your platform name."); return;
+  } else {
+    document.getElementById("platform-name").style.borderColor = "";
+  }
+  if (!selectedDate) { valid = false; alert("Please pick a date on the calendar."); return; }
+  if (!selectedSlot) { valid = false; alert("Please select a time (hour and minutes)."); return; }
+  if (!valid) return;
+
+  const dateStr = selectedDate.toLocaleDateString("en-US",
+    {weekday:"long", year:"numeric", month:"long", day:"numeric"});
+  const timeStr = formatTime(selectedSlot);
+
+  const btn = document.getElementById("btn-submit");
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+
+  // --- Submit to Formspree ---
+  const payload = new FormData();
+  payload.append("_subject",    "New tutoring booking: " + firstName + " " + lastName);
+  payload.append("Name",        firstName + " " + lastName);
+  payload.append("Email",       email);
+  payload.append("Course",      course);
+  payload.append("Subject",     subject);
+  const platformContact = [platformEmail, platformPhone].filter(Boolean).join(" / ");
+  const platformFull = platform === "Other"
+    ? "Other — " + platformName + (platformContact ? " (" + platformContact + ")" : "")
+    : platform;
+  payload.append("Platform",    platformFull);
+  payload.append("Date",        dateStr);
+  payload.append("Time",        timeStr + " (" + timezone.replace(/_/g," ") + ")");
+  payload.append("Notes",       comment || "—");
+  payload.append("_replyto",    email);
+
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: payload,
+      headers: { Accept: "application/json" }
+    });
+
+    if (res.ok) {
+      showConfirmation(firstName, dateStr, timeStr);
+    } else {
+      throw new Error("Server error");
+    }
+  } catch (e) {
+    document.getElementById("booking-error-msg").style.display = "block";
+    btn.disabled = false;
+    btn.textContent = "Book Session";
+  }
+}
+
+function showConfirmation(name, dateStr, timeStr) {
+  document.getElementById("booking-form-wrapper").style.display = "none";
+  const conf = document.getElementById("booking-confirm");
+  document.getElementById("confirm-text").innerHTML =
+    "Thank you, <strong>" + name + "</strong>! Your request for " +
+    "<strong>" + dateStr + " at " + timeStr + "</strong> has been received. " +
+    "I'll do my best to accommodate your chosen time and will confirm everything by email shortly.";
+  conf.style.display = "block";
+  conf.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+// Kick off
+init();
+</script>

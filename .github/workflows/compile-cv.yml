@@ -1,0 +1,42 @@
+name: Compile CV
+
+# Triggers whenever Overleaf pushes .tex files to the `overleaf` branch
+on:
+  push:
+    branches:
+      - overleaf
+
+jobs:
+  compile-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit the PDF back to main
+
+    steps:
+      - name: Checkout overleaf branch
+        uses: actions/checkout@v4
+
+      # Compile LaTeX using a full TexLive environment.
+      # ↓ Change `main.tex` to match the filename of your root file in Overleaf.
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+
+      # The compiled PDF now lives at ./main.pdf (same name as root_file).
+      # Commit it to the main branch at the path the resume page already uses.
+      - name: Push compiled PDF to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin main
+          git checkout main
+
+          cp main.pdf assets/resume/Daniele_Bracale_resume.pdf
+
+          git add assets/resume/Daniele_Bracale_resume.pdf
+          # Skip the commit entirely if the PDF is unchanged
+          git diff --staged --quiet || \
+            git commit -m "chore: auto-update CV from Overleaf [skip ci]"
+          git push origin main

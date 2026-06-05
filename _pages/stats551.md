@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Bayesian Modeling: STATS/DATASCI 551 Fall 2025"
+title: "Stats 551"
 permalink: /stats551/
 author_profile: true
 ---

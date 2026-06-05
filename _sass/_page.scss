@@ -55,9 +55,19 @@
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
 
+  h1 {
+    color: #e0e0e0;
+  }
+
   h2 {
+    color: #52adc8;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid #2f2f2f;
+    letter-spacing: 0.5px;
+  }
+
+  h3 {
+    color: #b0c8d0;
   }
 
   p, li, dl {

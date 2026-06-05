@@ -4,13 +4,14 @@ main:
     url: /projects/
 
   - title: "Teaching"
-    url: /teaching/    
-    
+    url: /teaching/
+
+  - title: "Tutoring"
+    url: /tutoring/
+
   - title: "Resume"
     url: /resume/
 
   #- title: "Notes"
   #  url: "/notes/"
 
-  - title: "Current class: Stats 551"
-    url: "/stats551/"

@@ -8,6 +8,9 @@ author_profile: true
 Graduate Student Instructor (GSI) at University of Michigan
 ======
 
+* **STATS/DATASCI 551: Bayesian Modeling** (Fall 2025) — <a href="/stats551/" style="display:inline-block;margin-left:0.4em;padding:0.25em 0.9em;background:#1a3d4e;border:1px solid #52adc8;border-radius:20px;color:#52adc8;font-size:0.85em;text-decoration:none;transition:all 0.18s" onmouseover="this.style.background='#2a4d5e'" onmouseout="this.style.background='#1a3d4e'">View course page →</a>
+	* Design and teach weekly lab classes, conduct office hours, and manage course Piazza
+
 * **Stats 426: Introduction to theoretical statistics** (Winter 2024)
 	* Grade homework, and conduct office hours
 
