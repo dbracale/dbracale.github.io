@@ -588,36 +588,23 @@ author_profile: true
 
 
 <script>
-/* =====================================================
-   AVAILABILITY CONFIGURATION
-   All days, every hour from 8:00 to 21:00.
-   Edit SLOTS or ALL_DAYS to restrict if needed.
-   ===================================================== */
 const ALL_SLOTS = [];
 for (let h = 8; h <= 21; h++) ALL_SLOTS.push(String(h).padStart(2,"0") + ":00");
 
 const AVAILABILITY = {};
-for (let d = 0; d <= 6; d++) AVAILABILITY[d] = ALL_SLOTS;  // 0=Sun … 6=Sat
+for (let d = 0; d <= 6; d++) AVAILABILITY[d] = ALL_SLOTS;
 
-/* =====================================================
-   FORMSPREE SETUP
-   1. Go to https://formspree.io and sign up (free)
-   2. Create a new form → get your Form ID (8 chars)
-   3. Replace YOUR_FORM_ID below
-   ===================================================== */
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojzvkba";
-
-/* ===================================================== */
 
 const MONTH_NAMES = ["January","February","March","April","May","June",
                      "July","August","September","October","November","December"];
 const DAY_NAMES   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 let currentYear, currentMonth;
-let selectedDate   = null;  // Date object
-let selectedHour   = null;  // 8..21
-let selectedMinute = null;  // 0, 15, 30, 45
-let selectedSlot   = null;  // "HH:MM" combined
+let selectedDate   = null;
+let selectedHour   = null;
+let selectedMinute = null;
+let selectedSlot   = null;
 
 /* ---- Timezone selector ---- */
 const COMMON_TZ = [
@@ -683,7 +670,6 @@ function renderCalendar() {
   label.textContent = MONTH_NAMES[currentMonth] + " " + currentYear;
   grid.innerHTML = "";
 
-  // Day headers
   DAY_NAMES.forEach(d => {
     const el = document.createElement("div");
     el.className = "cal-day-header";
@@ -695,7 +681,6 @@ function renderCalendar() {
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const today = new Date(); today.setHours(0,0,0,0);
 
-  // Leading blanks
   for (let i = 0; i < firstDay; i++) {
     const el = document.createElement("div");
     el.className = "cal-day other-month";
@@ -812,11 +797,7 @@ document.getElementById("cal-next").onclick = () => {
   renderCalendar();
 };
 
-/* =====================================================
-   FORM SUBMISSION
-   ===================================================== */
 async function submitBooking() {
-  // --- Collect & validate ---
   const firstName = document.getElementById("first-name").value.trim();
   const lastName  = document.getElementById("last-name").value.trim();
   const email     = document.getElementById("student-email").value.trim();
@@ -833,7 +814,6 @@ async function submitBooking() {
 
   let valid = true;
 
-  // Simple required-field highlight
   ["first-name","last-name","student-email","course-type"].forEach(id => {
     const el = document.getElementById(id);
     if (!el.value.trim()) {
@@ -864,7 +844,6 @@ async function submitBooking() {
   btn.disabled = true;
   btn.textContent = "Sending…";
 
-  // --- Submit to Formspree ---
   const payload = new FormData();
   payload.append("_subject",    "New tutoring booking: " + firstName + " " + lastName);
   payload.append("Name",        firstName + " " + lastName);
@@ -911,6 +890,5 @@ function showConfirmation(name, dateStr, timeStr) {
   conf.scrollIntoView({behavior:"smooth", block:"start"});
 }
 
-// Kick off
 init();
 </script>
